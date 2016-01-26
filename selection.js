@@ -1,13 +1,14 @@
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
-    debugger;
-    var arrayCheck = ["pounds","lbs","miles","mph","foot","feet","fahrenheit","F","inch"];
+    //debugger;
+    var arrayCheck = ["pound","lb","mile","mph","foot","feet","fahrenheit","F","inch"];
     var stringToBeChecked = window.getSelection().toString();
     var valueToDisplay;
     if (request.method == "getSelection"){
         for(var index = 0;index < arrayCheck.length;index++){
             var indexOfString = stringToBeChecked.indexOf(arrayCheck[index]);
+            var numericPart = parseInt(stringToBeChecked.substring(0,indexOfString).trim().replace(/\D/g,''));
             if(indexOfString != -1){
-                valueToDisplay = doConversion(index, parseInt(stringToBeChecked.substring(0,indexOfString)));
+                valueToDisplay = doConversion(index, numericPart);
                 break;
              }
         }
@@ -21,12 +22,9 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
         switch(arrayCheck[index]){
             case "lb":
             case "pound":
-            case "lbs":
-            case "pounds":
                 convertedValue = convertedValue*0.453592;
                 convertedValue = convertedValue + " kgs";
                 break;
-            case "miles":
             case "mile":
                 convertedValue = convertedValue*1.60934;
                 convertedValue = convertedValue + " kilometers";

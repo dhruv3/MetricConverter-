@@ -1,10 +1,10 @@
 {
- "name": "Selected Text",
+ "name": "Metric Converter",
  "version": "0.1",
- "description": "Selected Text",
+ "description": "Metric Converter",
  "manifest_version": 2,
  "browser_action": {
-   "default_title": "Selected Text",
+   "default_title": "Metric Converter",
    "default_icon": "on.png",
    "default_popup": "popup.html" 
  },
